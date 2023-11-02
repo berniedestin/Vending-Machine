@@ -39,5 +39,6 @@ Item Class abstract? for each item to inherit
 
 Stretch Goals:
 - Machine keeps track of coins
+- Cringe-O-Meter
 
 
