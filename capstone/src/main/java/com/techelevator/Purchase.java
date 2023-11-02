@@ -69,9 +69,67 @@ public class Purchase {
                 }
 
             } else if (choice.equals(OPTION_SELECT_FINISH)) {
+                getChange();
+                VendingMachineCLI.getMachine().setBalance(new BigDecimal(0));
                 break;
             }
 
         }
+    }
+
+
+
+    public void getChange() {
+
+        System.out.println("Thank you for your purchase");
+
+        String change = "Your change is ";
+        int remainder = VendingMachineCLI.getMachine().getBalance().multiply(new BigDecimal(100)).intValue();
+
+        if (remainder == 0) {
+            change = "There is no change";
+        }
+
+        if (remainder % 500 == 0 && remainder > 0) {
+            change += remainder / 500 + " $5 bill(s)";
+            remainder -= (remainder / 500) * 500;
+        } else if (remainder % 500 > 0 && remainder > 0) {
+            change += remainder / 500 + " $5 bill(s), ";
+            remainder -= (remainder / 500) * 500;
+        }
+        if (remainder % 100 == 0 & remainder > 0) {
+            change += remainder / 100 + " $1 bill(s)";
+            remainder -= (remainder / 100) * 100;
+        } else if (remainder % 100 > 0 && remainder > 0) {
+            change += remainder / 100 + " $1 bill(s), ";
+            remainder -= (remainder / 100) * 100;
+        }
+        if (remainder % 25 == 0 && remainder > 0) {
+            change += remainder / 25 + " quarter(s)";
+            remainder -= (remainder / 25) * 25;
+        } else if (remainder % 25 > 0 && remainder > 0) {
+            change += remainder / 25 + " quarter(s), ";
+            remainder -= (remainder / 25) * 25;
+        }
+        if (remainder % 10 == 0 && remainder > 0) {
+            change += remainder / 10 + " dime(s)";
+            remainder -= (remainder / 10) * 10;
+        } else if (remainder % 10 > 0 && remainder > 0) {
+            change += remainder / 10 + " dime(s), ";
+            remainder -= (remainder / 10) * 10;
+        }
+        if (remainder % 5 == 0 && remainder > 0) {
+            change += remainder / 5 + " nickel(s)";
+            remainder -= (remainder / 5) * 5;
+        } else if (remainder % 5 > 0 && remainder > 0) {
+            change += remainder / 5 + " nickel(s), ";
+            remainder -= (remainder / 5) * 5;
+        }
+        if (remainder > 0) {
+            change += remainder + " penny(s)";
+            remainder = 0;
+        }
+
+        System.out.println(change);
     }
 }
