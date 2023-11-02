@@ -32,9 +32,13 @@ public class Purchase {
                     amount = Double.parseDouble(input.nextLine());
                     VendingMachineCLI.getMachine().setBalance(
                             VendingMachineCLI.getMachine().getBalance().add(new BigDecimal(amount)));
+                    VendingMachineCLI.getMachine().getLog().writeToLog(VendingMachineCLI.getMachine().getLog().getFeedLog(new BigDecimal(amount)));
+                    // delete below this
+                    //System.out.println(VendingMachineCLI.getMachine().getLog().getFeedLog(new BigDecimal(amount)));
                 }catch (NumberFormatException e){
                     System.out.println("Please enter a valid dollar amount!");
                 }
+
 
 
             } else if (choice.equals(OPTION_SELECT_PRODUCT)) {
@@ -58,6 +62,9 @@ public class Purchase {
 
                             System.out.println("You bought " + item.getName() + " for $" + item.getPrice() + ", " + item.getMessage());
                             System.out.println("You have $" + VendingMachineCLI.getMachine().getBalance() + " left.");
+                            VendingMachineCLI.getMachine().getLog().writeToLog(VendingMachineCLI.getMachine().getLog().getPurchaseLog(item));
+                            //Delete below
+                            //System.out.println(VendingMachineCLI.getMachine().getLog().getPurchaseLog(item));
                         } else {
                             System.out.println("You don't have enough money!! Oh no!");
                         }
@@ -70,6 +77,9 @@ public class Purchase {
 
             } else if (choice.equals(OPTION_SELECT_FINISH)) {
                 getChange();
+                VendingMachineCLI.getMachine().getLog().writeToLog(VendingMachineCLI.getMachine().getLog().getChangeLog());
+                //Delete one below
+                //System.out.println(VendingMachineCLI.getMachine().getLog().getChangeLog());
                 VendingMachineCLI.getMachine().setBalance(new BigDecimal(0));
                 break;
             }
