@@ -5,6 +5,7 @@ TO-DO
     - ask Chris why the map test didn't work
 - make it pretty
     - output item list in neat columns
+- condense change-making into a method-call
 
 
 Stretch Goals:
