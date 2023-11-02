@@ -36,4 +36,8 @@ public class Machine {
     public String getStockCSV() {
         return stockCSV;
     }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
 }

@@ -30,18 +30,12 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 
-				List<String> inventoryList = new ArrayList<>();
-				for (Map.Entry<String, Item> item : machine.getInventory().getInventoryMap().entrySet()) {
-					inventoryList.add(item.getValue().getOutput());
-				}
-				Collections.sort(inventoryList);
-
-				for (String item : inventoryList) {
-					System.out.println(item);
-				}
+				machine.getInventory().printInventoryList();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
+				Purchase purchase = new Purchase();
+				purchase.run();
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 				break;
 			}

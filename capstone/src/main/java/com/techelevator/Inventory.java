@@ -1,9 +1,7 @@
 package com.techelevator;
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Inventory {
 
@@ -11,6 +9,20 @@ public class Inventory {
 
     public Map<String, Item> getInventoryMap() {
         return inventoryMap;
+    }
+    public List<String> getInventoryList(){
+        List<String> inventoryList = new ArrayList<>();
+        for (Map.Entry<String, Item> item : getInventoryMap().entrySet()) {
+            inventoryList.add(item.getValue().getOutput());
+        }
+        Collections.sort(inventoryList);
+        return inventoryList;
+    }
+    public void printInventoryList(){
+        List<String> inventoryList = getInventoryList();
+        for (String item : inventoryList) {
+            System.out.println(item);
+        }
     }
 
     public Inventory(File stock) {
