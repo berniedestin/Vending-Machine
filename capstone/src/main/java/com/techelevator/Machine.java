@@ -8,7 +8,7 @@ public class Machine {
     private Inventory inventory;
     private BigDecimal balance;
     private Log log;
-    private final String stockCSV = "capstone/vendingmachine.csv";
+    private final String stockCSV = "vendingmachine.csv";
 
 
     public Machine() {

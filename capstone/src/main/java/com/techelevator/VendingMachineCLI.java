@@ -40,7 +40,8 @@ public class VendingMachineCLI {
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 				break;
 			}else if (choice.equals(MAIN_MENU_OPTION_SECRET)) {
-				System.out.println("You found the secret!");
+				machine.getLog().writeSalesLog();
+				System.out.println("sales log successfully printed");
 			}
 
 		}

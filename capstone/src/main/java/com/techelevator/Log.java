@@ -8,18 +8,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Map;
 
 public class Log {
 
-
-    public static void main(String[] args) {
-        System.out.println(getLogString());
-    }
-
-
-//    public Log() {
-//
-//    }
     public static String getLogString(){
         LocalDateTime current = LocalDateTime.now();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
@@ -56,7 +49,7 @@ public class Log {
     }
 
     public void writeToLog(String log){
-        File writeFile = new File("capstone/src/log/Log.txt");
+        File writeFile = new File("src/log/Log.txt");
         try {
             if (!writeFile.exists()) {
                 writeFile.createNewFile();
@@ -71,7 +64,39 @@ public class Log {
         }
 
     }
-    public void writeToSalesLog(){
+    public void writeSalesLog(){
+
+        String fileName = "src/log/SalesLog.txt";
+        File logFile = new File(fileName);
+
+        try {
+            if (!logFile.exists()) {
+                logFile.createNewFile();
+            }
+        } catch (Exception e) {
+            System.out.println("Something went wrong creating the sales log");
+        }
+
+
+
+        try (PrintWriter writer = new PrintWriter(logFile)) {
+            BigDecimal totalSales = new BigDecimal(0);
+            for (Map.Entry<String, Item> item : VendingMachineCLI.getMachine().getInventory().getInventoryMap().entrySet()) {
+
+                int quantity = (5 - item.getValue().getQuantity());
+                String itemSale = item.getValue().getName() + "|" + quantity;
+                totalSales = totalSales.add(new BigDecimal(quantity).multiply(item.getValue().getPrice()));
+
+                writer.println(itemSale);
+            }
+            writer.println();
+            writer.println("**TOTAL SALES** " + totalSales);
+
+        } catch (Exception e) {
+            System.out.println("Something went wrong writing to the sales log");
+        }
+
+
 
     }
 
