@@ -1,0 +1,43 @@
+In VendingMachineCLI:
+before while loop in run
+make Inventory object
+that read inventory file
+create Map<String(slot location), Item> inventoryMap in Inventory Class
+if inventoryMap.get(slot).getQuantity == 0 {
+    SOLD OUT
+}
+
+DisplayVendingMachineItems class, similar to VendingMachineCLI
+- static final strings of options
+- static final string[] of options
+- menu
+
+Purchase class, similar to VendingMachineCLI
+- static final strings of options
+- static final string[] of options
+- menu
+- currentBalance
+- method for dispenseChange
+- Item productSelected
+- output to log file
+
+Machine class?
+- Inventory
+- Log
+
+Log class
+- Map<String, Integer> salesMap
+- int totalSales
+
+Item Class abstract? for each item to inherit
+- productSlot
+- productName
+- price
+- type
+- description
+
+
+Stretch Goals:
+- Machine keeps track of coins
+
+
