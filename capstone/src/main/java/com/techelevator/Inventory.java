@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Inventory {
-
+    public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
+    public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
+    public static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
+    public static final String RESET = "\033[0m";  // Text Reset
     private Map<String, Item> inventoryMap;
 
     public Map<String, Item> getInventoryMap() {
@@ -12,16 +15,25 @@ public class Inventory {
     }
     public List<String> getInventoryList(){
         List<String> inventoryList = new ArrayList<>();
+
         for (Map.Entry<String, Item> item : getInventoryMap().entrySet()) {
+
             inventoryList.add(item.getValue().getOutput());
+
         }
         Collections.sort(inventoryList);
         return inventoryList;
     }
     public void printInventoryList(){
         List<String> inventoryList = getInventoryList();
+        boolean isLight = true;
         for (String item : inventoryList) {
-            System.out.println(item);
+            if(isLight){
+                System.out.println( WHITE_BACKGROUND_BRIGHT + BLACK_BOLD + item + RESET);
+            } else {
+                System.out.println(BLACK_BOLD + WHITE_BACKGROUND + item + RESET);
+            }
+            isLight = !isLight;
         }
     }
 

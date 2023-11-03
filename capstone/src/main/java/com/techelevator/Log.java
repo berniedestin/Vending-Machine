@@ -29,6 +29,12 @@ public class Log {
         String time = dateFormat.format(current);
         return time;
     }
+    public String getDateSalesFormat(){
+        LocalDateTime current = LocalDateTime.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd hhmmssa");
+        String time = dateFormat.format(current);
+        return time;
+    }
 
     public String getFeedLog(BigDecimal money){
         String log = getTime() + " FEED MONEY: $" + money.setScale(2,BigDecimal.ROUND_HALF_UP) + " $" +
@@ -66,7 +72,7 @@ public class Log {
     }
     public void writeSalesLog(){
 
-        String fileName = "src/log/SalesLog.txt";
+        String fileName = "src/log/SalesLog_" + getDateSalesFormat() + ".txt";
         File logFile = new File(fileName);
 
         try {

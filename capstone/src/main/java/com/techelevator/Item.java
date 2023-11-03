@@ -73,7 +73,20 @@ public class Item {
             quantityValue += Integer.toString(quantity);
         }
 
-        return slot + " " + name + " " + price + " " + type + " " + quantityValue;
+        return getSpaces(2) + slot + getSpaces(5 - slot.length()) +
+                name + getSpaces(22 - name.length()) +
+                price + getSpaces(10 - price.toString().length()) +
+                type + getSpaces(10 - type.length()) + quantityValue + getSpaces(2);
 
+    }
+
+    public String getSpaces(int space){
+        String spaces = "";
+        if(space > 0) {
+            for (int i = 1; i <= space; i++) {
+                spaces += " ";
+            }
+        }
+        return spaces;
     }
 }

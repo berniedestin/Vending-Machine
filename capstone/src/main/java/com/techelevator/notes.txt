@@ -1,6 +1,4 @@
 TO-DO
-- add date for SalesLog output
-    - ask Chris why our filepaths are different
 - unit testing
     - ask Chris why the map test didn't work
 - make it pretty
