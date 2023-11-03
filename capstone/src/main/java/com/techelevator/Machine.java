@@ -9,6 +9,11 @@ public class Machine {
     private BigDecimal balance;
     private Log log;
     private final String stockCSV = "vendingmachine.csv";
+    private String vendomatic = "  _   __   ______   __   __   _____     _____           __   __     ____    ________  _______   _______ \n" +
+            " | | / /  / ____/  /  \\ / /  /  _  \\   /  __ \\  ____   /  \\ /  |   / _  |  /__   __/ /__  __/  /  ____/\n" +
+            " | |/ /  / ___/   / /\\ V /  /  /_|  | /  /_/ / /___/  / /| `/| |  / /_| |   /  /     __/ /__  /  /____\n" +
+            " |___/  /_____/  /_/  \\_/  /_______/  \\_____/        /_/ |_/ |_| /_/``|_|  /__/     /______/  \\______/";
+    public static final String CYAN_BOLD_BRIGHT = "\033[1;96m";  // CYAN
 
 
     public Machine() {
@@ -31,6 +36,9 @@ public class Machine {
 
     public Log getLog() {
         return log;
+    }
+    public String getVendomatic(){
+        return CYAN_BOLD_BRIGHT + vendomatic + Inventory.RESET;
     }
 
     public String getStockCSV() {

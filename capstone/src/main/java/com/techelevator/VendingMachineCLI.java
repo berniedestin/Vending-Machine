@@ -15,6 +15,7 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_SECRET = "SECRET";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT, MAIN_MENU_OPTION_SECRET };
 
+
 	private Menu menu;
 	private static Machine machine = new Machine();
 
@@ -48,6 +49,7 @@ public class VendingMachineCLI {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(machine.getVendomatic());
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
