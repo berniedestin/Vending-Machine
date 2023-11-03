@@ -64,6 +64,7 @@ public class Purchase {
     public void selectProduct(){
         VendingMachineCLI.getMachine().getInventory().printInventoryList();
         System.out.print("Please enter an item code: ");
+        SoundPlayer soundEffect = new SoundPlayer();
         try {
             String code = input.nextLine().toUpperCase();
 
@@ -78,6 +79,8 @@ public class Purchase {
                 if(VendingMachineCLI.getMachine().getBalance().compareTo(item.getPrice()) >= 0){
                     VendingMachineCLI.getMachine().setBalance(VendingMachineCLI.getMachine().getBalance().subtract(item.getPrice()));
                     item.setQuantity(item.getQuantity() - 1);
+
+                    soundEffect.playBuyItem();
 
                     System.out.println("You bought " + item.getName() + " for $" + item.getPrice() + ", " + item.getMessage());
                     System.out.println("You have $" + VendingMachineCLI.getMachine().getBalance() + " left.");

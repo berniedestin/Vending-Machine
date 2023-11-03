@@ -22,4 +22,22 @@ public class SoundPlayer {
         }
     }
 
+    public void playBuyItem(){
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File("src/main/resources/vendsfx.wav"));
+            AudioFormat audioFormat = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioStream);
+            clip.start();
+            clip.loop(1);
+
+            clip.close();
+        } catch (Exception e) {
+            System.out.println("problem with sound");
+
+        }
+    }
+
+
 }
