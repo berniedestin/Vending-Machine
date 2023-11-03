@@ -55,7 +55,7 @@ public class Purchase {
                 throw new NumberFormatException();
             }
             VendingMachineCLI.getMachine().setBalance(
-                    VendingMachineCLI.getMachine().getBalance().add(new BigDecimal(amount)));
+                    VendingMachineCLI.getMachine().getBalance().add(new BigDecimal(amount).setScale(2, BigDecimal.ROUND_HALF_UP)));
             VendingMachineCLI.getMachine().getLog().writeToLog(VendingMachineCLI.getMachine().getLog().getFeedLog(new BigDecimal(amount)));
         }catch (NumberFormatException e){
             System.out.println("Please enter a valid dollar amount!");

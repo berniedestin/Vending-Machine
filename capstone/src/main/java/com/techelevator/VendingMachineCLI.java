@@ -2,11 +2,6 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -49,6 +44,10 @@ public class VendingMachineCLI {
 	}
 
 	public static void main(String[] args) {
+
+		SoundPlayer song = new SoundPlayer();
+		song.playSong();
+
 		System.out.println(machine.getVendomatic());
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
