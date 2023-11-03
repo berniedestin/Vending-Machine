@@ -26,7 +26,7 @@ public class InventoryTest {
 
         expectedMap.put("A1", new Item("A1", "Potato Crisps", new BigDecimal("3.05"), "Chip"));
 
-        Assert.assertTrue(testInventory.getInventoryMap().equals(expectedMap));
+        Assert.assertEquals(testInventory.getInventoryMap(), expectedMap);
 
 
     }

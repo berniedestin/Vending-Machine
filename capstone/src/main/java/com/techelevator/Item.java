@@ -90,4 +90,21 @@ public class Item {
         }
         return spaces;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Item item = (Item)o;
+
+        if (item.getQuantity() == this.getQuantity()
+        && item.getPrice().equals(this.price)
+        && item.getName().equals(this.name)
+        && item.getSlot().equals(this.slot)
+        && item.getType().equals(this.type)) {
+            return true;
+        }
+        return false;
+
+    }
+
+
 }
