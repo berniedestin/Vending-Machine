@@ -56,15 +56,84 @@ public class Change {
         }
         if (remainder > 0) {
             this.pennies = remainder;
-            remainder = 0;
         }
-
-
-
-
-
 
     }
 
+    public String getChange() {
+
+        if (!isChange) {
+            return "There is no change";
+        }
+
+        String change = "Your change is";
+
+        if (fives > 0) {
+            if (fives == 1) {
+                change += " 1 $5 bill";
+            }
+            if (fives > 1) {
+                change += " " + fives + " $5 bills";
+            }
+        }
+        if (ones > 0) {
+            if (change.length() > 14) {
+                change += ",";
+            }
+            if (ones == 1) {
+                change += " 1 $1 bill";
+            }
+            if (ones > 1) {
+                change += " " + ones + " $1 bills";
+            }
+        }
+        if (quarters > 0) {
+            if (change.length() > 14) {
+                change += ",";
+            }
+            if (quarters == 1) {
+                change += " 1 quarter";
+            }
+            if (quarters > 1) {
+                change += " " + quarters + " quarters";
+            }
+        }
+        if (dimes > 0) {
+            if (change.length() > 14) {
+                change += ",";
+            }
+            if (dimes == 1) {
+                change += " 1 dime";
+            }
+            if (dimes > 1) {
+                change += " " + dimes + " dimes";
+            }
+        }
+        if (nickels > 0) {
+            if (change.length() > 14) {
+                change += ",";
+            }
+            if (nickels == 1) {
+                change += " 1 nickel";
+            }
+            if (nickels > 1) {
+                change += " " + nickels + " nickels";
+            }
+        }
+        if (pennies > 0) {
+            if (change.length() > 14) {
+                change += ",";
+            }
+            if (pennies == 1) {
+                change += " 1 penny";
+            }
+            if (pennies > 1) {
+                change += " " + pennies + " pennies";
+            }
+        }
+
+        return change;
+
+    }
 
 }

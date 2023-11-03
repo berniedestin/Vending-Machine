@@ -76,7 +76,8 @@ public class Item {
         return getSpaces(2) + slot + getSpaces(5 - slot.length()) +
                 name + getSpaces(22 - name.length()) +
                 price + getSpaces(10 - price.toString().length()) +
-                type + getSpaces(10 - type.length()) + quantityValue + getSpaces(2);
+                type + getSpaces(10 - type.length()) +
+                quantityValue + getSpaces(15 - quantityValue.length());
 
     }
 

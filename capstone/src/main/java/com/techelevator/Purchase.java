@@ -12,6 +12,8 @@ public class Purchase {
     private static final String[] MAIN_MENU_OPTIONS = {OPTION_FEED_MONEY,OPTION_SELECT_PRODUCT,OPTION_SELECT_FINISH};
     private Menu menu;
     private Scanner input = new Scanner(System.in);
+    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m"; // GREEN
+    public static final String RED_BOLD_BRIGHT = "\033[1;91m";   // RED
 
     public Purchase(){
         this.menu = new Menu(System.in, System.out);
@@ -20,8 +22,13 @@ public class Purchase {
     public void run() {
 
         while (true) {
-            System.out.println("Current Money Provided: $" +
-                    VendingMachineCLI.getMachine().getBalance().setScale(2, BigDecimal.ROUND_HALF_UP));
+
+            String outputColor = VendingMachineCLI.getMachine().getBalance().compareTo(new BigDecimal(0)) == 0 ?
+                    RED_BOLD_BRIGHT :
+                    GREEN_BOLD_BRIGHT;
+
+            System.out.println("Current Money Provided: " + outputColor + "$" +
+                    VendingMachineCLI.getMachine().getBalance().setScale(2, BigDecimal.ROUND_HALF_UP) + Inventory.RESET);
             String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
             if (choice.equals(OPTION_FEED_MONEY)) {
@@ -44,11 +51,12 @@ public class Purchase {
         double amount = 0;
         try{
             amount = Double.parseDouble(input.nextLine());
+            if (amount < 0) {
+                throw new NumberFormatException();
+            }
             VendingMachineCLI.getMachine().setBalance(
                     VendingMachineCLI.getMachine().getBalance().add(new BigDecimal(amount)));
             VendingMachineCLI.getMachine().getLog().writeToLog(VendingMachineCLI.getMachine().getLog().getFeedLog(new BigDecimal(amount)));
-            // delete below this
-            //System.out.println(VendingMachineCLI.getMachine().getLog().getFeedLog(new BigDecimal(amount)));
         }catch (NumberFormatException e){
             System.out.println("Please enter a valid dollar amount!");
         }
@@ -90,54 +98,9 @@ public class Purchase {
     public void getChange() {
 
         System.out.println("Thank you for your purchase");
-
-        String change = "Your change is ";
         int remainder = VendingMachineCLI.getMachine().getBalance().multiply(new BigDecimal(100)).intValue();
+        Change change = new Change(remainder);
+        System.out.println(change.getChange());
 
-        if (remainder == 0) {
-            change = "There is no change";
-        }
-
-        if (remainder % 500 == 0 && remainder > 0) {
-            change += remainder / 500 + " $5 bill(s)";
-            remainder -= (remainder / 500) * 500;
-        } else if (remainder % 500 > 0 && remainder > 0) {
-            change += remainder / 500 + " $5 bill(s), ";
-            remainder -= (remainder / 500) * 500;
-        }
-        if (remainder % 100 == 0 & remainder > 0) {
-            change += remainder / 100 + " $1 bill(s)";
-            remainder -= (remainder / 100) * 100;
-        } else if (remainder % 100 > 0 && remainder > 0) {
-            change += remainder / 100 + " $1 bill(s), ";
-            remainder -= (remainder / 100) * 100;
-        }
-        if (remainder % 25 == 0 && remainder > 0) {
-            change += remainder / 25 + " quarter(s)";
-            remainder -= (remainder / 25) * 25;
-        } else if (remainder % 25 > 0 && remainder > 0) {
-            change += remainder / 25 + " quarter(s), ";
-            remainder -= (remainder / 25) * 25;
-        }
-        if (remainder % 10 == 0 && remainder > 0) {
-            change += remainder / 10 + " dime(s)";
-            remainder -= (remainder / 10) * 10;
-        } else if (remainder % 10 > 0 && remainder > 0) {
-            change += remainder / 10 + " dime(s), ";
-            remainder -= (remainder / 10) * 10;
-        }
-        if (remainder % 5 == 0 && remainder > 0) {
-            change += remainder / 5 + " nickel(s)";
-            remainder -= (remainder / 5) * 5;
-        } else if (remainder % 5 > 0 && remainder > 0) {
-            change += remainder / 5 + " nickel(s), ";
-            remainder -= (remainder / 5) * 5;
-        }
-        if (remainder > 0) {
-            change += remainder + " penny(s)";
-            remainder = 0;
-        }
-
-        System.out.println(change);
     }
 }
