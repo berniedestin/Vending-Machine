@@ -57,6 +57,8 @@ public class Purchase {
             VendingMachineCLI.getMachine().setBalance(
                     VendingMachineCLI.getMachine().getBalance().add(new BigDecimal(amount).setScale(2, BigDecimal.ROUND_HALF_UP)));
             VendingMachineCLI.getMachine().getLog().writeToLog(VendingMachineCLI.getMachine().getLog().getFeedLog(new BigDecimal(amount).setScale(2, BigDecimal.ROUND_HALF_UP)));
+
+            VendingMachineCLI.getMachine().getSoundPlayer().playFeedMoney();
         }catch (NumberFormatException e){
             System.out.println("Please enter a valid dollar amount!");
         }
@@ -88,6 +90,8 @@ public class Purchase {
 
                 } else {
                     System.out.println("You don't have enough money!! Oh no!");
+
+                    VendingMachineCLI.getMachine().getSoundPlayer().playSadSound();
                 }
             }
 
@@ -104,6 +108,8 @@ public class Purchase {
         int remainder = VendingMachineCLI.getMachine().getBalance().multiply(new BigDecimal(100)).intValue();
         Change change = new Change(remainder);
         System.out.println(change.getChange());
+
+        VendingMachineCLI.getMachine().getSoundPlayer().playGetChange();
 
     }
 }
