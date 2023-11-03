@@ -47,6 +47,7 @@ public class VendingMachineCLI {
 
 		SoundPlayer song = new SoundPlayer();
 		song.playSong();
+		//song.simpleAudioPlayer();
 
 		System.out.println(machine.getVendomatic());
 		Menu menu = new Menu(System.in, System.out);
