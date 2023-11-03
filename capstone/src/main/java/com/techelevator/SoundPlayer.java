@@ -30,9 +30,8 @@ public class SoundPlayer {
             Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(audioStream);
             clip.start();
-            clip.loop(1);
+            clip.loop(0);
 
-            clip.close();
         } catch (Exception e) {
             System.out.println("problem with sound");
 

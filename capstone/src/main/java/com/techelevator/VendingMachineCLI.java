@@ -14,6 +14,7 @@ public class VendingMachineCLI {
 	private Menu menu;
 	private static Machine machine = new Machine();
 
+
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
@@ -45,8 +46,7 @@ public class VendingMachineCLI {
 
 	public static void main(String[] args) {
 
-		SoundPlayer song = new SoundPlayer();
-		song.playSong();
+		machine.getSoundPlayer().playSong();
 
 		System.out.println(machine.getVendomatic());
 		Menu menu = new Menu(System.in, System.out);

@@ -9,6 +9,7 @@ public class Machine {
     private BigDecimal balance;
     private Log log;
     private final String stockCSV = "vendingmachine.csv";
+    private SoundPlayer soundPlayer = new SoundPlayer();
     private String vendomatic = "  _   __   ______   __   __   _____     _____           __   __     ____    ________  _______   _______ \n" +
             " | | / /  / ____/  /  \\ / /  /  _  \\   /  __ \\  ____   /  \\ /  |   / _  |  /__   __/ /__  __/  /  ____/\n" +
             " | |/ /  / ___/   / /\\ V /  /  /_|  | /  /_/ / /___/  / /| `/| |  / /_| |   /  /     __/ /__  /  /____\n" +
@@ -43,6 +44,10 @@ public class Machine {
 
     public String getStockCSV() {
         return stockCSV;
+    }
+
+    public SoundPlayer getSoundPlayer() {
+        return soundPlayer;
     }
 
     public void setBalance(BigDecimal balance) {
